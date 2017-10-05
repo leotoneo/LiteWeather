@@ -137,7 +137,7 @@ public class ChooseAreaFragment extends Fragment {
             listView.setSelection(0);
             currentLevel = LEVEL_PROVINCE;
         } else {
-            String addr = "http;//guolin.tech/api/china";
+            String addr = "http://guolin.tech/api/china";
             queryFromServer(addr,"province");
         }
     }
@@ -196,10 +196,10 @@ public class ChooseAreaFragment extends Fragment {
     /**
      * 查询所选择的省中的所有的市，优先去数据库查询，如果没有再去服务器上查询
      */
-    private void queryCounties() {
+    private void queryCities() {
         textView.setText(selectProvince.getProvinceName());
         button.setVisibility(View.VISIBLE);
-        cityList = DataSupport.where("province = ?",String.valueOf(selectProvince.getId())).find(City.class);
+        cityList = DataSupport.where("provinceid = ?",String.valueOf(selectProvince.getId())).find(City.class);
         if (cityList.size() > 0) {
             dataList.clear();
             for (City city : cityList) {
@@ -209,23 +209,48 @@ public class ChooseAreaFragment extends Fragment {
             listView.setSelection(0);
             currentLevel = LEVEL_CITY;
         } else {
-            
+            int provinceCode = selectProvince.getProvinceCode();
+            String addr = "http://guolin.tech/api/china/" + provinceCode;
+            queryFromServer(addr,"city");
         }
     }
 
     /**
      * 查询所选择的市中的所有的县，优先去数据库查询，如果没有再去服务器查询
      */
-    private void queryCities() {
-
-    }
-
-    private void closeProgressDialog() {
-
+    private void queryCounties() {
+        textView.setText(selectCity.getCityName());
+        button.setVisibility(View.VISIBLE);
+        countyList = DataSupport.where("cityid = ?",String.valueOf(selectCity.getId())).find(County.class);
+        if (countyList.size() > 0) {
+            dataList.clear();
+            for (County county : countyList) {
+                dataList.add(county.getCountyName());
+            }
+            adapter.notifyDataSetChanged();
+            listView.setSelection(0);
+            currentLevel = LEVEL_COUNTY;
+        } else {
+            int provinceCode = selectProvince.getProvinceCode();
+            int cityCode = selectCity.getCityCode();
+            String addr = "http://guolin.tech/api/china/" +  provinceCode + "/" + cityCode;
+            queryFromServer(addr,"county");
+        }
     }
 
     private void showProgressDilog() {
+        if (progressDialog == null) {
+            progressDialog = new ProgressDialog(getActivity());
+            progressDialog.setMessage("正在加载...");
+            progressDialog.setCanceledOnTouchOutside(false);
+        }
+        progressDialog.show();
+    }
 
+    private void closeProgressDialog() {
+        if (progressDialog != null) {
+            progressDialog.dismiss();
+        }
     }
 
 }

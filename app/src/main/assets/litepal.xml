@@ -3,7 +3,7 @@
     <version value="1"/>
     <list>
         <mapping class="com.leotoneo.liteweather.liteweather.db.City"/>
-        <mapping class="com.leotoneo.liteweather.liteweather.County"/>
-        <mapping class="com.leotoneo.liteweather.liteweather.Province"/>
+        <mapping class="com.leotoneo.liteweather.liteweather.db.County"/>
+        <mapping class="com.leotoneo.liteweather.liteweather.db.Province"/>
     </list>
 </litepal>
