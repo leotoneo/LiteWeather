@@ -1,4 +1,4 @@
-package util;
+package com.leotoneo.liteweather.liteweather.util;
 
 import android.text.TextUtils;
 

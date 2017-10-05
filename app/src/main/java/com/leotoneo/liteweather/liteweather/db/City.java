@@ -1,4 +1,4 @@
-package db;
+package com.leotoneo.liteweather.liteweather.db;
 
 import org.litepal.crud.DataSupport;
 

@@ -33,7 +33,7 @@ public class ChooseAreaFragment extends Fragment {
     private Button button;
     private ListView listView;
     private ArrayAdapter<String> adapter;
-    private List<String> dataList = new ArrayList<>();
+    private List<String> dataList = new ArrayList<String>();
     private List<Province> provinceList;
     private List<City> cityList;
     private List<County> countyList;

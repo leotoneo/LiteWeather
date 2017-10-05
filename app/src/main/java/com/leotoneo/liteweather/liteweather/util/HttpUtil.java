@@ -1,6 +1,4 @@
-package util;
-
-import android.app.DownloadManager;
+package com.leotoneo.liteweather.liteweather.util;
 
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
