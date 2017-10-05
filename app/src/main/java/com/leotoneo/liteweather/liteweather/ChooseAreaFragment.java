@@ -13,12 +13,13 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.leotoneo.liteweather.liteweather.db.City;
+import com.leotoneo.liteweather.liteweather.db.County;
+import com.leotoneo.liteweather.liteweather.db.Province;
+
 import java.util.ArrayList;
 import java.util.List;
 
-import db.City;
-import db.County;
-import db.Province;
 
 /**
  * A simple {@link Fragment} subclass.

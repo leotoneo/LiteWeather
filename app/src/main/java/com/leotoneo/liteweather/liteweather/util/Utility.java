@@ -2,13 +2,15 @@ package com.leotoneo.liteweather.liteweather.util;
 
 import android.text.TextUtils;
 
+import com.leotoneo.liteweather.liteweather.db.City;
+import com.leotoneo.liteweather.liteweather.db.County;
+import com.leotoneo.liteweather.liteweather.db.Province;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import db.City;
-import db.County;
-import db.Province;
+
 
 /**
  * Created by leo zhang on 2017/7/22 0022.
