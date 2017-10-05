@@ -200,6 +200,17 @@ public class ChooseAreaFragment extends Fragment {
         textView.setText(selectProvince.getProvinceName());
         button.setVisibility(View.VISIBLE);
         cityList = DataSupport.where("province = ?",String.valueOf(selectProvince.getId())).find(City.class);
+        if (cityList.size() > 0) {
+            dataList.clear();
+            for (City city : cityList) {
+                dataList.add(city.getCityName());
+            }
+            adapter.notifyDataSetChanged();
+            listView.setSelection(0);
+            currentLevel = LEVEL_CITY;
+        } else {
+            
+        }
     }
 
     /**
