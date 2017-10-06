@@ -1,6 +1,7 @@
 package com.leotoneo.liteweather.liteweather.util;
 
 import android.text.TextUtils;
+import android.util.Log;
 
 import com.leotoneo.liteweather.liteweather.db.City;
 import com.leotoneo.liteweather.liteweather.db.County;
@@ -63,7 +64,8 @@ public class Utility {
     }
         /*解析返回县的Json数据*/
     public static boolean handleCountyRespond(String response ,int cityId){
-        if (TextUtils.isEmpty(response)){
+        if (!TextUtils.isEmpty(response)){
+
             try {
                 JSONArray allCounty = new JSONArray(response);
                 for(int i=0;i<allCounty.length();i++){

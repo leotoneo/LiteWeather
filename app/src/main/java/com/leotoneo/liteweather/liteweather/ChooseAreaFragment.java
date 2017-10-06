@@ -5,6 +5,7 @@ import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,6 +38,8 @@ import okhttp3.Response;
  * A simple {@link Fragment} subclass.
  */
 public class ChooseAreaFragment extends Fragment {
+
+    public static final String TAG = "com.leotoneo.liteweather.liteweather.ChooseAreaFragment";
 
     public static final int LEVEL_PROVINCE = 0;
     public static final int LEVEL_CITY = 1;
@@ -171,6 +174,7 @@ public class ChooseAreaFragment extends Fragment {
                     result = Utility.handleCityRespond(respondText,selectProvince.getId());
                 } else if ("county".equals(type)) {
                     result = Utility.handleCountyRespond(respondText,selectCity.getId());
+
                 }
                 if (result) {
                     getActivity().runOnUiThread(new Runnable() {
@@ -199,7 +203,7 @@ public class ChooseAreaFragment extends Fragment {
     private void queryCities() {
         textView.setText(selectProvince.getProvinceName());
         button.setVisibility(View.VISIBLE);
-        cityList = DataSupport.where("provinceid = ?",String.valueOf(selectProvince.getId())).find(City.class);
+        cityList = DataSupport.where("provinceId = ?",String.valueOf(selectProvince.getId())).find(City.class);
         if (cityList.size() > 0) {
             dataList.clear();
             for (City city : cityList) {
@@ -221,7 +225,7 @@ public class ChooseAreaFragment extends Fragment {
     private void queryCounties() {
         textView.setText(selectCity.getCityName());
         button.setVisibility(View.VISIBLE);
-        countyList = DataSupport.where("cityid = ?",String.valueOf(selectCity.getId())).find(County.class);
+        countyList = DataSupport.where("cityId = ?",String.valueOf(selectCity.getId())).find(County.class);
         if (countyList.size() > 0) {
             dataList.clear();
             for (County county : countyList) {
