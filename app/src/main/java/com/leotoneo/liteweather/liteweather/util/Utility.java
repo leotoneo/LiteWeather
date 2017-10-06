@@ -3,9 +3,11 @@ package com.leotoneo.liteweather.liteweather.util;
 import android.text.TextUtils;
 import android.util.Log;
 
+import com.google.gson.Gson;
 import com.leotoneo.liteweather.liteweather.db.City;
 import com.leotoneo.liteweather.liteweather.db.County;
 import com.leotoneo.liteweather.liteweather.db.Province;
+import com.leotoneo.liteweather.liteweather.gson.Weather;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -82,6 +84,18 @@ public class Utility {
             }
         }
         return  false;
+    }
+
+    public static Weather handleWeatherReponse(String response) {
+        try {
+            JSONObject jsonObject = new JSONObject(response);
+            JSONArray jsonArray = jsonObject.getJSONArray("HeWeather");
+            String weatherContent = jsonArray.getJSONObject(0).toString();
+            return new Gson().fromJson(weatherContent,Weather.class);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }
 
